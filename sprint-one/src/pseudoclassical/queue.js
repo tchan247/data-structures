@@ -12,26 +12,11 @@ Queue.prototype.enqueue = function(value) {
 
 Queue.prototype.dequeue = function() {
   var results = this.storage[Object.keys(this.storage)[0]];
-  // debugger;
   delete this.storage[Object.keys(this.storage)[0]];
-  // this.count--;
   return results;
 }
 
 Queue.prototype.size = function() {
-  // if(Object.keys(this.storage).length < 0) ? 0
   var length = Object.keys(this.storage).length;
-  // debugger;
   return (length >= 0)? length : 0;
 }
-
-// queue.enqueue('a');
-// queue.enqueue('b');
-// queue.dequeue();
-// expect(queue.size()).to.equal(1);
-
-// queue.enqueue('a');
-// queue.enqueue('b');
-// queue.dequeue();
-// queue.enqueue('c');
-// expect(queue.dequeue()).to.equal('b');
