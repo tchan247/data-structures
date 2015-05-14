@@ -25,7 +25,7 @@ var Stack = function() {
  };
 
 
-
+// assuming(referencesThis).expect(/this/.test(constructor)).to.be.true;
 
 
 
