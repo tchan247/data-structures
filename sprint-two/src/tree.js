@@ -4,8 +4,8 @@ var Tree = function(value){
   for(var key in treeMethods){
     newTree[key] = treeMethods[key];
   }
-  // your code here
-  newTree.children = [];  // fix me
+
+  newTree.children = [];
 
   return newTree;
 };
@@ -45,10 +45,6 @@ treeMethods.contains = function(target){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * addChild: Constant Time O(1)
+ * contains: Linear Time O(n)
  */
-
-// A tree class, in functional with shared methods style, with the following properties:
-// .children property, an array containing a number of subtrees
-// .addChild() method, takes any value, sets that as the target of a node, and adds that node as a child of the tree
-// A .contains() method, takes any input and returns a boolean reflecting whether it can be found as the value of the target node or any descendant node
-// What is the time complexity of the above functions?
