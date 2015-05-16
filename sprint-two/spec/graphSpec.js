@@ -39,8 +39,16 @@ describe('graph', function() {
   it('should remove edges between nodes', function() {
     graph.addNode('apples');
     graph.addNode('satsumas');
+    graph.addNode('bananas');
     graph.addEdge('satsumas', 'apples');
+    graph.addEdge('bananas', 'apples');
     expect(graph.hasEdge('apples', 'satsumas')).to.equal(true);
+    expect(graph.hasEdge('apples', 'bananas')).to.equal(true);
+    graph.removeEdge('satsumas', 'apples');
+    graph.removeEdge('bananas', 'apples');
+    expect(graph.hasEdge('apples', 'satsumas')).to.equal(false);
+    expect(graph.hasEdge('apples', 'bananas')).to.equal(false);
+
   });
 
   it('should execute a callback on each node in the graph', function() {
