@@ -13,60 +13,61 @@ Graph.prototype.addNode = function(value){
 Graph.prototype.contains = function(value){
   var bool = false;
 
-  for(var i = 0; i < this.graph.length; i++) {
-    if(this.graph[i].value === value) {
+  this.forEachNode(function (val, item) {    
+    if(item.value === value) {
       bool = true;
     }
-  }
+  })
 
   return bool;
 };
 
 Graph.prototype.removeNode = function(value){
-  for(var i = 0; i < this.graph.length; i++) {
-    if(this.graph[i].value === value) {
-      this.graph.splice(i, 1);
+  this.forEachNode(function (val, item, index, collection) {    
+    if(item.value === value) {
+      collection.splice(index, 1);
     }
-  }
+  })
 };
 
 Graph.prototype.hasEdge = function(fromValue, toValue){
-  for(var i = 0; i < this.graph.length; i++) {
-    if((this.graph[i].value === fromValue) && (this.graph[i].edges.indexOf(toValue) > -1)) {
-      return true
+  var presence = false;
+  this.forEachNode(function (val, item) {
+    if((item.value === fromValue) && (item.edges.indexOf(toValue) > -1)) {
+      presence = true;
     }
-  }
-  return false;
+  });
+  return presence;
 };
 
 Graph.prototype.addEdge = function(fromValue, toValue){
-  for(var i = 0; i < this.graph.length; i++) {
-    if(this.graph[i].value === fromValue) {
-      this.graph[i].edges.push(toValue);
+  this.forEachNode(function (val, item) {
+    if(item.value === fromValue) {
+      item.edges.push(toValue);
     }
-    if(this.graph[i].value === toValue) {
-      this.graph[i].edges.push(fromValue);
+    if(item.value === toValue) {
+      item.edges.push(fromValue);
     }
-  }
+  });
 };
 
 Graph.prototype.removeEdge = function(fromValue, toValue){
 
   // FIGURE THIS OUT:
 
-  for(var i = 0; i < this.graph.length; i++) {
-    if(this.graph[i].value === fromValue) {
-      this.graph[i].edges.splice(this.graph[this.graph.indexOf(toValue)], 1);
-    }
-    if(this.graph[i].value === toValue) {
-      this.graph[i].edges.push(fromValue);
-    }
-  }
+  this.forEachNode(function (val, item, index, collection) {
+      if(val === fromValue) {
+        item.edges.splice(collection[collection.indexOf(toValue)], 1);
+      }
+      if(val === toValue) {
+        item.edges.splice(collection[collection.indexOf(fromValue)], 1);
+      }
+  })
 };
 
 Graph.prototype.forEachNode = function(cb){
   for(var i = 0; i < this.graph.length; i++) {
-    cb(this.graph[i]);
+    cb(this.graph[i].value, this.graph[i], i, this.graph);
   }
 };
 
