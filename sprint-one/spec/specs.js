@@ -102,7 +102,7 @@ define([
       }
     });
 
-    describe('queue shared behavior', function(){
+    xdescribe('queue shared behavior', function(){
 
       verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
 
@@ -144,7 +144,7 @@ define([
     });
 
     describe('queue-specific behavior', function(){
-      it('removes the least recently added of two items', function() {
+      xit('removes the least recently added of two items', function() {
         queue.enqueue('a');
         queue.enqueue('b');
         expect(queue.dequeue()).to.equal('a');
