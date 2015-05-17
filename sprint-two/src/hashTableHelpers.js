@@ -28,13 +28,6 @@ var LimitedArray = function(limit){
       callback(storage[i], i, storage);
     }
   };
-  //
-  limitedArray.list = function(callback){
-    for(var i = 0; i < storage.length; i++){
-      console.log(storage[i]);
-    }
-  };
-  //
   var checkLimit = function(index){
     if(typeof index !== 'number'){ throw new Error('setter requires a numeric index for its first argument'); }
     if(limit <= index){ throw new Error('Error trying to access an over-the-limit index'); }
@@ -58,4 +51,9 @@ var getIndexBelowMaxForKey = function(str, max){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * get: Constant Time O(1)
+ * set: Constant Time O(1)
+ * each: Linear Time O(n)
+ * checkLimit: Constant Time O(1)
+ * getIndexBelowMaxForKey: Linear Time O(n)
  */
